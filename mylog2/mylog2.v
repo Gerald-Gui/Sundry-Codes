@@ -16,7 +16,7 @@ module mylog2 #(
     genvar i, j;
     generate 
         for (i = IDX_WIDTH-1; i > 0; i = i - 1) begin
-            assign res[i] = |src[base[i]+:({{IDX_WIDTH-1{1'b0}}, 1'b1} << i)];
+            assign res[i] = src[base[i]+:({{IDX_WIDTH-1{1'b0}}, 1'b1} << i)] != 0;
             for (j = 0; j < IDX_WIDTH; j = j + 1) begin
                 if (i == j) begin
                     assign base[i - 1][j] = res[i];
